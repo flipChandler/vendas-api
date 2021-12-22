@@ -1,5 +1,7 @@
 package br.com.xbrain.vendasapi.model;
 
+import br.com.xbrain.vendasapi.model.dto.VendaDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -29,6 +31,13 @@ public class Venda {
         this.dataVenda = dataVenda;
         this.valor = valor;
         this.vendedor = vendedor;
+    }
+
+    public Venda(VendaDTO dto) {
+        super();
+        this.id = dto.getId();
+        this.dataVenda = dto.getDataVenda();
+        this.valor = dto.getValor();
     }
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package br.com.xbrain.vendasapi.model;
 
+import br.com.xbrain.vendasapi.model.dto.VendedorDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -27,6 +28,11 @@ public class Vendedor {
     public Vendedor(Long id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public Vendedor(VendedorDTO vendedorDTO) {
+        this.id = vendedorDTO.getId();
+        this.nome = vendedorDTO.getNome();
     }
 
     public Long getId() {

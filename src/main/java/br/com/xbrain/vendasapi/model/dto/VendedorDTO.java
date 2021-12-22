@@ -3,10 +3,11 @@ package br.com.xbrain.vendasapi.model.dto;
 import br.com.xbrain.vendasapi.model.Venda;
 import br.com.xbrain.vendasapi.model.Vendedor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendedorDTO {
+public class VendedorDTO implements Serializable {
 
     private Long id;
     private String nome;
@@ -30,5 +31,24 @@ public class VendedorDTO {
         vendas.forEach(venda -> this.vendas.add(new VendaDTO(venda)));
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<VendaDTO> getVendas() {
+        return vendas;
+    }
 
 }
