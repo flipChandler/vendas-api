@@ -1,6 +1,6 @@
 package br.com.xbrain.vendasapi.controllers;
 
-import br.com.xbrain.vendasapi.model.Venda;
+import br.com.xbrain.vendasapi.model.dto.VendaDTO;
 import br.com.xbrain.vendasapi.services.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,9 @@ public class VendaController {
     private VendaService service;
 
     @GetMapping
-    public ResponseEntity<List<Venda>> findAll() {
+    public ResponseEntity<List<VendaDTO>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
+
+
 }
