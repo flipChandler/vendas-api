@@ -1,5 +1,7 @@
 package br.com.xbrain.vendasapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Vendedor {
 
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vendedor")
     private List<Venda> vendas = new ArrayList<>();
 
