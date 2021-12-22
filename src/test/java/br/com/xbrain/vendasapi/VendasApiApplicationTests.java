@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class VendasApiApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void main() {
+		VendasApiApplication.main(new String[] {});
 	}
 
 }
