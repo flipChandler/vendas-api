@@ -16,6 +16,13 @@ public class VendaDTO {
 
     }
 
+    public VendaDTO(Long id, LocalDate dataVenda, double valor, VendedorDTO vendedor) {
+        this.id = id;
+        this.dataVenda = dataVenda;
+        this.valor = valor;
+        this.vendedor = vendedor;
+    }
+
     public VendaDTO(Venda venda) {
         this.id = venda.getId();
         this.dataVenda = venda.getDataVenda();

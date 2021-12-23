@@ -8,19 +8,25 @@ import br.com.xbrain.vendasapi.repositories.VendaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 class VendaServiceTest {
 
+    public static final long ID = 1L;
+    public static final String NOME = "João";
+    public static final double VALOR = 150.0;
     @InjectMocks
     private VendaService vendaService;
 
-    @InjectMocks
+    @Mock
     private VendaRepository vendaRepository;
 
     private Vendedor vendedor;
@@ -30,6 +36,7 @@ class VendaServiceTest {
 
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.openMocks(this);
         startVenda();
     }
 
@@ -39,38 +46,43 @@ class VendaServiceTest {
 
     @Test
     void verificarAtributosDeVendedor() {
-        assertEquals(1L, vendedor.getId());
-        assertEquals("João", vendedor.getNome());
+        assertEquals(ID, vendedor.getId());
+        assertEquals(NOME, vendedor.getNome());
     }
 
     @Test
     void verificarAtributosDeVenda() {
-        assertEquals(1L, venda.getId());
-        assertEquals(150.0, venda.getValor());
+        assertEquals(ID, venda.getId());
+        assertEquals(VALOR, venda.getValor());
     }
 
     @Test
     void verificarAtributosDeVendaDTO() {
-        assertEquals(1L, vendaDTO.getId());
-        assertEquals(150.0, vendaDTO.getValor());
+        assertEquals(ID, vendaDTO.getId());
+        assertEquals(VALOR, vendaDTO.getValor());
         assertEquals(venda.getDataVenda(), vendaDTO.getDataVenda());
         assertEquals(venda.getVendedor().getNome(), vendaDTO.getVendedor().getNome());
     }
 
-    // @Test
-    void create() {
+    @Test
+    void quandoCriarUmaVendaRetorneSucesso() {
         when(vendaRepository.save(any())).thenReturn(venda);
 
         VendaDTO response = vendaService.create(vendaDTO);
 
+        assertNotNull(response);
         assertEquals(VendaDTO.class, response.getClass());
+        assertEquals(ID, response.getId());
+        assertEquals(VALOR, response.getValor());
+        assertEquals(vendedorDTO.getId(), response.getVendedor().getId());
     }
 
     private void startVenda() {
-        vendedor = new Vendedor(1L, "João");
-        venda = new Venda(1L, LocalDate.now(), 150.0, vendedor);
-        vendaDTO = new VendaDTO(venda);
+        vendedor = new Vendedor(ID, NOME);
         vendedorDTO = new VendedorDTO(vendedor);
+        venda = new Venda(ID, LocalDate.now(), VALOR, vendedor);
+        vendaDTO = new VendaDTO(ID, LocalDate.now(), VALOR, vendedorDTO);
+
     }
 
     private Venda novaVenda(VendaDTO dto) {
