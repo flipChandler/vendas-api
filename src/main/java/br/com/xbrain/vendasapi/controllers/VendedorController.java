@@ -1,6 +1,7 @@
 package br.com.xbrain.vendasapi.controllers;
 
 import br.com.xbrain.vendasapi.model.Vendedor;
+import br.com.xbrain.vendasapi.model.dto.CountVendasDTO;
 import br.com.xbrain.vendasapi.model.dto.VendedorDTO;
 import br.com.xbrain.vendasapi.services.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class VendedorController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<VendedorDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping(value = "/vendas")
+    public ResponseEntity<List<CountVendasDTO>> fetchVendedoresVendas() {
+        return ResponseEntity.ok(service.fetchListaVendedoresTotaisVendas());
     }
 }

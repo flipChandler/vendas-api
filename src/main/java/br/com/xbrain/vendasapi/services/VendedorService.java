@@ -1,6 +1,7 @@
 package br.com.xbrain.vendasapi.services;
 
 import br.com.xbrain.vendasapi.model.Vendedor;
+import br.com.xbrain.vendasapi.model.dto.CountVendasDTO;
 import br.com.xbrain.vendasapi.model.dto.VendedorDTO;
 import br.com.xbrain.vendasapi.repositories.VendedorRepository;
 import br.com.xbrain.vendasapi.services.exceptions.ObjectNotFoundException;
@@ -26,5 +27,10 @@ public class VendedorService {
             throw new ObjectNotFoundException("Objeto não encontrado! Id = " + id);
         }
         return new VendedorDTO(optionalVendedor.get());
+    }
+
+    public List<CountVendasDTO> fetchListaVendedoresTotaisVendas() {
+        List<CountVendasDTO> list = repository.fetchVendedoresVendas();
+        return list;
     }
 }

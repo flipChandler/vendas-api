@@ -1,7 +1,6 @@
 package br.com.xbrain.vendasapi.model;
 
 import br.com.xbrain.vendasapi.model.dto.VendedorDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class Vendedor {
 
     private String nome;
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY)
     private List<Venda> vendas = new ArrayList<>();
 
