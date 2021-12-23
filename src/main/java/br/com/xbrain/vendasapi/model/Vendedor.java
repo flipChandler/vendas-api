@@ -19,7 +19,7 @@ public class Vendedor {
     private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vendedor")
+    @OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY)
     private List<Venda> vendas = new ArrayList<>();
 
     public Vendedor() {

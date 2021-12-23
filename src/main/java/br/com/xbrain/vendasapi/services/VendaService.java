@@ -3,12 +3,12 @@ package br.com.xbrain.vendasapi.services;
 import br.com.xbrain.vendasapi.model.Venda;
 import br.com.xbrain.vendasapi.model.Vendedor;
 import br.com.xbrain.vendasapi.model.dto.VendaDTO;
-import br.com.xbrain.vendasapi.model.dto.VendedorDTO;
 import br.com.xbrain.vendasapi.repositories.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,21 +30,15 @@ public class VendaService {
 
     @Transactional
     public VendaDTO create(VendaDTO dto) {
-        Venda venda = repository.save(novaVenda(dto));
+        Venda venda = new Venda();
+        copyDTOToEntity(dto, venda);
+        venda = repository.save(venda);
         return new VendaDTO(venda);
     }
 
-    private Venda novaVenda(VendaDTO dto) {
-        VendedorDTO vendedorDTO = vendedorService.findById(dto.getVendedor());
-
-        Venda venda = new Venda();
-        if (dto.getId() != null) {
-            venda.setId(dto.getId());
-        }
-        venda.setVendedor(new Vendedor(vendedorDTO));
-        venda.setDataVenda(dto.getDataVenda());
-        venda.setValor(dto.getValor());
-
-        return venda;
+    private void copyDTOToEntity(VendaDTO dto, Venda entity) {
+        entity.setDataVenda(LocalDate.now());
+        entity.setValor(dto.getValor());
+        entity.setVendedor(new Vendedor(dto.getVendedor()));
     }
 }

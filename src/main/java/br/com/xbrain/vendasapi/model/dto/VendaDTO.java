@@ -1,6 +1,7 @@
 package br.com.xbrain.vendasapi.model.dto;
 
 import br.com.xbrain.vendasapi.model.Venda;
+import br.com.xbrain.vendasapi.model.Vendedor;
 
 import java.time.LocalDate;
 
@@ -9,8 +10,7 @@ public class VendaDTO {
     private Long id;
     private LocalDate dataVenda;
     private double valor;
-    private Long vendedor;
-    private String nomeVendedor;
+    private VendedorDTO vendedor;
 
     public VendaDTO() {
 
@@ -20,8 +20,12 @@ public class VendaDTO {
         this.id = venda.getId();
         this.dataVenda = venda.getDataVenda();
         this.valor = venda.getValor();
-        this.vendedor = venda.getVendedor().getId();
-        this.nomeVendedor = venda.getVendedor().getNome();
+        this.vendedor = new VendedorDTO(venda.getVendedor());
+    }
+
+    public VendaDTO(Venda venda, Vendedor vendedor){
+        this(venda);
+        this.vendedor = new VendedorDTO(vendedor);
     }
 
     public Long getId() {
@@ -48,19 +52,11 @@ public class VendaDTO {
         this.valor = valor;
     }
 
-    public Long getVendedor() {
+    public VendedorDTO getVendedor() {
         return vendedor;
     }
 
-    public void setVendedor(Long vendedor) {
+    public void setVendedor(VendedorDTO vendedor) {
         this.vendedor = vendedor;
-    }
-
-    public String getNomeVendedor() {
-        return nomeVendedor;
-    }
-
-    public void setNomeVendedor(String nomeVendedor) {
-        this.nomeVendedor = nomeVendedor;
     }
 }
