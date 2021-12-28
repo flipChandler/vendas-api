@@ -1,7 +1,5 @@
 package br.com.xbrain.vendasapi.model.dto;
-
 import br.com.xbrain.vendasapi.model.Vendedor;
-
 import java.io.Serializable;
 
 public class CountVendasDTO implements Serializable {

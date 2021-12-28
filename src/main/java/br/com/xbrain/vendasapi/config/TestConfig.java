@@ -31,7 +31,6 @@ public class TestConfig {
         Vendedor vendedor4 = new Vendedor(null, "Jeremy");
         Vendedor vendedor5 = new Vendedor(null, "Sue");
 
-
         Venda venda1 = new Venda(null, LocalDate.now(), 25.51, vendedor1);
         Venda venda2 = new Venda(null, LocalDate.now(), 35.22, vendedor2);
         Venda venda3 = new Venda(null, LocalDate.now(), 45.73, vendedor3);
@@ -47,7 +46,5 @@ public class TestConfig {
 
         vendaRepository.saveAll(List.of(venda1, venda2, venda3, venda4, venda5,
                 venda6, venda7, venda8, venda9, venda10));
-
-
     }
 }

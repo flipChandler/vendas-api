@@ -23,6 +23,7 @@ class VendaServiceTest {
     public static final long ID = 1L;
     public static final String NOME = "João";
     public static final double VALOR = 150.0;
+
     @InjectMocks
     private VendaService vendaService;
 
@@ -82,7 +83,6 @@ class VendaServiceTest {
         vendedorDTO = new VendedorDTO(vendedor);
         venda = new Venda(ID, LocalDate.now(), VALOR, vendedor);
         vendaDTO = new VendaDTO(ID, LocalDate.now(), VALOR, vendedorDTO);
-
     }
 
     private Venda novaVenda(VendaDTO dto) {
@@ -93,7 +93,6 @@ class VendaServiceTest {
         venda.setVendedor(new Vendedor(vendedorDTO));
         venda.setDataVenda(dto.getDataVenda());
         venda.setValor(dto.getValor());
-
         return venda;
     }
 }

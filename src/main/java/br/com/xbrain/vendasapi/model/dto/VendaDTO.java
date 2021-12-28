@@ -12,9 +12,7 @@ public class VendaDTO {
     private double valor;
     private VendedorDTO vendedor;
 
-    public VendaDTO() {
-
-    }
+    public VendaDTO() {}
 
     public VendaDTO(Long id, LocalDate dataVenda, double valor, VendedorDTO vendedor) {
         this.id = id;

@@ -16,7 +16,6 @@ public class Venda {
 
     @Column(name = "data_venda")
     private LocalDate dataVenda;
-
     private double valor;
 
     @ManyToOne
